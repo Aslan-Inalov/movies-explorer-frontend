@@ -4,6 +4,7 @@
     justify-content: space-between;
     background: #F9F9F9;
     padding: 6px 6px 6px 22px;
+    gap: 10px;
 }
 
 .moviescard__details {
@@ -75,6 +76,7 @@
     .moviescard {
         display: flex;
         flex-direction: column-reverse;
+        align-items: center;
         height: 232px;
         padding: 0;
     }

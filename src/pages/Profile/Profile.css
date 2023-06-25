@@ -72,13 +72,24 @@
 .profile-form__button-edit {
     font-weight: 400;
     margin-top: 204px;
+    transition: all .2s linear;
+}
+
+.profile-form__button-edit:hover {
+    opacity: .7;
 }
 
 .profile-form__button-signout {
     font-weight: 500;
     color: #ee3465;
     margin-top: 16px;
+    transition: all .2s linear;
 }
+
+.profile-form__button-signout:hover {
+    opacity: .7;
+}
+
 
 @media screen and (max-width: 800px) {
     .profile__title {
