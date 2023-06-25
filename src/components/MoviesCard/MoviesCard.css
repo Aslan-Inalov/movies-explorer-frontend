@@ -1,0 +1,120 @@
+.moviescard {
+    height: 122px;
+    display: flex;
+    justify-content: space-between;
+    background: #F9F9F9;
+    padding: 6px 6px 6px 22px;
+}
+
+.moviescard__details {
+    margin: 16px 0;
+}
+
+.moviescard__name {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 13px;
+}
+
+.moviescard__duration {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #A0A0A0;
+    margin: 0 0 30px;
+}
+
+.moviescard__like-btn {
+    background: no-repeat center/contain url('../../images/icon-like.svg');
+    padding: 0;
+    margin: 0;
+    width: 14px;
+    height: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.moviescard__like-btn_liked {
+    background: no-repeat center/contain url('../../images/icon-like-liked.svg');
+}
+
+.moviescard__like-btn:hover {
+    opacity: .8;
+}
+
+.moviescard__delete-btn {
+    background: no-repeat center/contain url('../../images/icon-close.svg');
+    padding: 0;
+    margin: 0;
+    width: 14px;
+    height: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.moviescard__delete-btn:hover {
+    opacity: .8;
+}
+
+.moviescard__image {
+    transition: all 0.16s linear;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.moviescard__image:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transform-origin: 50% 100%;
+}
+
+@media screen and (max-width: 440px) {
+    .moviescard {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 232px;
+        padding: 0;
+    }
+
+    .moviescard__image {
+        width: 300px;
+        height: 168px;
+    }
+
+    .moviescard__details {
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        min-height: 64px;
+    }
+
+    .moviescard__name {
+        font-size: 12px;
+        line-height: 15px;
+        margin: 14px 0 0 12px;
+    }
+
+    .moviescard__duration {
+        margin: 8px 0 14px 12px;
+    }
+
+    .moviescard__like-btn {
+        grid-area: 1 / 2 / 2 / 3;
+        justify-self: flex-end;
+        margin-top: 16px;
+        margin-right: 16px;
+    }
+
+    .moviescard__delete-btn {
+        grid-area: 1 / 2 / 2 / 3;
+        justify-self: flex-end;
+        margin-top: 16px;
+        margin-right: 16px;
+    }
+}
