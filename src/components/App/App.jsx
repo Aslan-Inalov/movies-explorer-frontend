@@ -38,7 +38,7 @@ const App = () => {
   const [savedMovies, setSavedMovies] = useState([]);
 
   const mainApi = new MainApi({
-    url: 'http://localhost:3000',
+    url: 'https://api.movies.aslan-inalov.nomoredomains.rocks',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('jwt')}`
