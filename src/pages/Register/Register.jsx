@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './Register.css';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useEffect } from "react";
+import { validateEmail } from '../../utils/validation';
 
 const Register = ({ onRegister, isLoggedIn, apiErrors }) => {
     const { values, handleChange, errors, isValid } = useFormAndValidation();
@@ -39,7 +40,7 @@ const Register = ({ onRegister, isLoggedIn, apiErrors }) => {
                         required
                     />
                     <span className="auth-form__input-error">{errors.name}</span>
-                    <label className="auth-form__label">E-mail</label>
+                    <label htmlFor="regEmail" className="auth-form__label">E-mail</label>
                     <input
                         className="auth-form__input"
                         type="email"
@@ -47,11 +48,9 @@ const Register = ({ onRegister, isLoggedIn, apiErrors }) => {
                         placeholder="Введите почту"
                         value={values.email || ''}
                         onChange={handleChange}
-                        minLength="2"
-                        maxLength="30"
                         required
                     />
-                    <span className="auth-form__input-error">{errors.email}</span>
+                    <span className="auth-form__input-error">{validateEmail(values.email).message}</span>
                     <label className="auth-form__label">Пароль</label>
                     <input
                         className="auth-form__input"
@@ -69,7 +68,10 @@ const Register = ({ onRegister, isLoggedIn, apiErrors }) => {
                     <button
                         type="submit"
                         className="auth-form__submit"
-                        disabled={!isValid}
+                        disabled={
+                            !isValid ||
+                            validateEmail(values.email).invalid
+                          }
                     >
                         Зарегистрироваться
                     </button>
