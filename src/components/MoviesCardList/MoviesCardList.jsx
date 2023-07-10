@@ -39,7 +39,7 @@ const MoviesCardList = ({ movies, savedMovies, onLikeMovie, onDeleteMovie }) => 
         movies.length > moviesToRender.length && (
           <button
             onClick={() => {
-              setMoviesToAdd((prev) => prev + (size.width >= 1280 ? 3 : 2));
+              setMoviesToAdd((prev) => prev + (size.width >= 1280 ? 7 : 5));
             }}
             className="movies__more-btn"
           >

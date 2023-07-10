@@ -56,7 +56,7 @@ const SearchForm = ({ onFilter, searchQuery }) => {
             minLength='1'
             maxLength='300'
             className='search-form__input'
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value.toLowerCase())}
           />
           <button
             type='submit'
