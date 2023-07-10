@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import './Login.css';
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { useEffect } from "react";
+import { validateEmail } from '../../utils/validation';
+
 
 const Login = ({ onLogin, isLoggedIn, apiErrors }) => {
     const { values, handleChange, errors, isValid } = useFormAndValidation();
@@ -33,11 +35,9 @@ const Login = ({ onLogin, isLoggedIn, apiErrors }) => {
                         placeholder="Введите почту"
                         value={values.email || ''}
                         onChange={handleChange}
-                        minLength="2"
-                        maxLength="30"
                         required
                     />
-                    <span className="auth-form__input-error">{errors.email}</span>
+                    <span className="auth-form__input-error">{validateEmail(values.email).message}</span>
                     <label className="auth-form__label">Пароль</label>
                     <input
                         className="auth-form__input"

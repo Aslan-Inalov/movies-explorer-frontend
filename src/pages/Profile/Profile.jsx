@@ -1,12 +1,15 @@
 import './Profile.css';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { validateEmail } from '../../utils/validation';
 
 const Profile = ({ onSignOut, onUpdateUser, apiErrors }) => {
     const { currentUser } = useContext(CurrentUserContext);
     const { values, handleChange, errors, isValid, setValues } =
         useFormAndValidation();
+    const [isProfileSaved, setIsProfileSaved] = useState(false);
+    const [isProfileChanged, setIsProfileChanged] = useState(false);
 
     useEffect(() => {
         if (currentUser) {
@@ -14,9 +17,16 @@ const Profile = ({ onSignOut, onUpdateUser, apiErrors }) => {
         }
     }, [currentUser, setValues]);
 
+    useEffect(() => {
+        setIsProfileChanged(
+          currentUser.name !== values.name || currentUser.email !== values.email
+        );
+      }, [currentUser, values]);    
+
     const handleSumbitSetUserInfo = (e) => {
         e.preventDefault();
         onUpdateUser(values);
+        setIsProfileSaved(true);
     };
 
     return (
@@ -53,17 +63,22 @@ const Profile = ({ onSignOut, onUpdateUser, apiErrors }) => {
                             required
                         />
                     </label>
-                    <span className="profile-form__input-error">{errors.email}</span>
+                    <span className="profile-form__input-error">{validateEmail(values.email).message}</span>
                     <div className="profile-form__submit-container">
-                        {apiErrors.profile && (
+                        {apiErrors.profile && !isProfileSaved && (
                             <span className="profile-form__error-message">
                                 {apiErrors.profile.errorText === 'Validation failed'
                                     ? apiErrors.profile.joiMessage
                                     : apiErrors.profile.errorText}
                             </span>
                         )}
+                        {isProfileSaved && (
+                            <span className="profile-form__success-message">
+                                Профиль успешно обновлен!
+                            </span>
+                        )}
                         <button
-                            disabled={!isValid}
+                            disabled={!isValid || !isProfileChanged || validateEmail(values.email).invalid}
                             className="profile-form__button profile-form__button-edit"
                         >
                             Редактировать

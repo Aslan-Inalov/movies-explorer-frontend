@@ -57,6 +57,11 @@
     color: #ee3465;
 }
 
+.profile-form__submit-container {
+    margin-top: 184px;
+    text-align: center;
+}
+
 .profile-form__button {
     border: none;
     background: none;
@@ -70,7 +75,7 @@
 
 .profile-form__button-edit {
     font-weight: 400;
-    margin-top: 204px;
+    margin-top: 20px;
     transition: all .2s linear;
 }
 
@@ -102,14 +107,20 @@
     text-align: center;
 }
 
+.profile-form__success-message {
+    color: #2BE080;
+    font-size: 11px;
+}
+
+
 
 @media screen and (max-width: 800px) {
     .profile__title {
         margin-bottom: 96px;
     }
 
-    .profile-form__button-edit {
-        margin-top: 194px;
+    .profile-form__submit-container {
+        margin-top: 174px;
     }
 }
 
@@ -122,7 +133,7 @@
         margin-bottom: 80px;
     }
 
-    .profile-form__button-edit {
-        margin-top: 363px;
+    .profile-form__submit-container {
+        margin-top: 343px;
     }
 }
