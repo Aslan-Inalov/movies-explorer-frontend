@@ -40,14 +40,14 @@ const SavedMovies = ({ savedMovies, onDeleteMovie }) => {
             filtered = savedMovies.filter((m) => {
                 return (
                     m.duration <= 40 &&
-                    m.nameRU.toLowerCase().trim().includes(query.searchText)
+                    m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
                 );
             });
             setFilteredMovies(filtered);
             localStorage.setItem('searchedSavedMovies', JSON.stringify(filtered));
         } else if (!query.isShortFilmChecked) {
             filtered = savedMovies.filter((m) => {
-                return m.nameRU.toLowerCase().trim().includes(query.searchText);
+                return m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase());
             });
             setFilteredMovies(filtered);
             localStorage.setItem('searchedSavedMovies', JSON.stringify(filtered));
@@ -67,7 +67,8 @@ const SavedMovies = ({ savedMovies, onDeleteMovie }) => {
                 onFilter={filterMovies}
                 searchQuery={searchQuery}
                 onResetInput={handleResetInput}
-            />            {isLoading ? <Preloader /> : (
+            />
+            {isLoading ? <Preloader /> : (
                 <>
                     <MoviesCardList movies={filteredMovies} onDeleteMovie={onDeleteMovie} />
                 </>
