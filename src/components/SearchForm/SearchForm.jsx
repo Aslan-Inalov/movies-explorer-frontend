@@ -7,31 +7,25 @@ const SearchForm = ({ onFilter, searchQuery }) => {
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
 
-
   useEffect(() => {
     if (searchQuery.searchText) {
       setSearchText(searchQuery.searchText);
     }
   }, [searchQuery.searchText]);
 
+  useEffect(() => {
+    setIsShortFilmChecked(searchQuery.isShortFilmChecked || false);
+  }, [searchQuery.isShortFilmChecked]);
+
   const checkFilterBox = () => {
-    if (searchText !== '') {
-      setIsShortFilmChecked(!isShortFilmChecked);
-      localStorage.setItem('filterCheckBox', !isShortFilmChecked);
+    const newIsShortFilmChecked = !isShortFilmChecked;
+    setIsShortFilmChecked(newIsShortFilmChecked);
+    localStorage.setItem('filterCheckBox', JSON.stringify(newIsShortFilmChecked));
 
-      onFilter({
-        searchText: searchText,
-        isShortFilmChecked: !isShortFilmChecked
-      });
-    } else {
-      setIsShortFilmChecked(!isShortFilmChecked);
-      localStorage.setItem('filterCheckBox', !isShortFilmChecked);
-
-      onFilter({
-        searchText: searchQuery.searchText,
-        isShortFilmChecked: !isShortFilmChecked
-      });
-    }
+    onFilter({
+      searchText: searchText,
+      isShortFilmChecked: newIsShortFilmChecked
+    });
   };
 
   const onSubmit = (e) => {
@@ -56,6 +50,7 @@ const SearchForm = ({ onFilter, searchQuery }) => {
             minLength='1'
             maxLength='300'
             className='search-form__input'
+            value={searchText}
             onChange={(e) => setSearchText(e.target.value.toLowerCase())}
           />
           <button
@@ -67,15 +62,15 @@ const SearchForm = ({ onFilter, searchQuery }) => {
         </div>
         {error && <p className="search-form__error">{error}</p>}
         <div className='search-form__toggle'>
+          <input
+            className='search-form__toggle-checkbox-invisible'
+            type='checkbox'
+            name='short-films'
+            id='short-films'
+            onChange={checkFilterBox}
+            checked={isShortFilmChecked}
+          />
           <label className='search-form__toggle-label' htmlFor='short-films'>
-            <input
-              className='search-form__toggle-checkbox-invisible'
-              type='checkbox'
-              name='short-films'
-              id='short-films'
-              onChange={checkFilterBox}
-              checked={isShortFilmChecked || ''}
-            />
             <span className={`search-form__toggle-checkbox-visible ${isShortFilmChecked && 'search-form__toggle-checkbox-visible_checked'}`} />
             Короткометражки
           </label>
