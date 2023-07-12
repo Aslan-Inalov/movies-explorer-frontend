@@ -84,6 +84,11 @@
     opacity: 0.8;
 }
 
+.auth-form__submit:disabled {
+    opacity: .6;
+    cursor: auto;
+  }
+
 .auth__subtitle {
     font-weight: 400;
     font-size: 14px;

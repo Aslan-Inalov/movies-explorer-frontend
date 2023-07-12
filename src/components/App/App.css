@@ -5,3 +5,18 @@
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
 }
+
+.temp-login {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  
+    display: flex;
+    gap: 10px;
+    background: lightcoral;
+    padding: 2px 4px;
+    opacity: 0.5;
+    color: #fff;
+    font-size: 10px;
+    z-index: 1000;
+  }

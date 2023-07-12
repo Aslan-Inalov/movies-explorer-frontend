@@ -32,16 +32,18 @@
     text-align: center;
 }
 
-.not-found__link {
+.not-found__button {
+    all: unset;
     color: #FF6838;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-decoration: none;
     transition: all 0.2s linear;
+    cursor: pointer;
 }
 
-.not-found__link:hover {
+.not-found__button:hover {
     opacity: .7;
 }
 
